@@ -11,6 +11,7 @@ angular.module("app").controller("mainController", ['$scope','$http','$interval'
         getDescriptionService();
         getServices();
         getWorks();
+        getWorksType();
         // $scope.services=[
         //     {
         //         id: 1,
@@ -172,6 +173,26 @@ angular.module("app").controller("mainController", ['$scope','$http','$interval'
 
                 });
 
+        }
+
+        function getWorksType(){
+            $http.get('http://localhost/server1/php_server/works/getWorksType.php')
+                .then(function(response) {
+                    console.log("----WORKS TYPE----");
+                    console.log(response.data);
+                    $scope.resultWorksType= response.data;
+
+
+                });
+
+        }
+
+        $scope.selected=0;
+        $scope.classSelected="btn-my";
+        $scope.classNoSelected="btn-default";
+        $scope.clickButtonWork = function(id){
+            console.log("CLICK: "+id);
+            $scope.selected=id;
         }
 
 

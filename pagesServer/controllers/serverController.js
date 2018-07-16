@@ -23,6 +23,10 @@ serverApp.config(function($routeProvider) {
         .when('/servizi', {
         templateUrl : 'pagesServer/service.html',
         controller  : 'servicesController'
+        })
+        .when('/works', {
+        templateUrl : 'pagesServer/work.html',
+        controller  : 'workController'
     });
 });
 

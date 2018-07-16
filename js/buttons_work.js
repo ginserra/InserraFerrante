@@ -1,5 +1,6 @@
 $(function(){
     $('.btn-circle').on('click',function(){
+        console.log("QUIIIIII");
         $('.btn-circle.btn-my').removeClass('btn-my').addClass('btn-default');
         $(this).addClass('btn-my').removeClass('btn-default').blur();
     });

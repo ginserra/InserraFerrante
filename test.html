@@ -1,0 +1,125 @@
+<div class="col-lg-12">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li ng-repeat="service in resultWorks track by $index"
+                data-target="#carousel-example-generic" data-slide-to="$index"
+                ng-class="{active:!$index}"></li>
+        </ol>
+
+
+        <!-- Wrapper for slides -->
+
+        <div class="carousel-inner">
+
+            <div ng-repeat="service in resultWorks track by $index" class="item"
+                 ng-class="{active:!$index}">
+                <img ng-src="{{service.image}}" alt="...">
+                <div class="carousel-caption">
+                    <h2 class="title-carousel">{{service.title}}</h2>
+                </div>
+            </div>
+
+            <!--<div class="item">-->
+            <!--<img src="http://placehold.it/800x400" alt="...">-->
+            <!--<div class="carousel-caption">-->
+            <!--<h2>Heading</h2>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+</div>
+
+
+
+
+<div class="process">
+    <div class="process-row nav nav-tabs">
+
+        <div class="process-step" ng-repeat="type in resultWorksType ">
+            <button type="button" class="btn btn-my btn-circle" data-toggle="tab"
+                    href="#menu{{$index}}"><i class="fa {{type.icon}} fa-3x"></i></button>
+            <p>
+                <small>{{type.type}}</small>
+            </p>
+        </div>
+        <!--<div class="process-step">-->
+        <!--<button type="button" class="btn btn-my btn-circle" data-toggle="tab" href="#menu1"><i class="fa fa-cubes fa-3x"></i></button>-->
+        <!--<p><small>Progetti</small></p>-->
+        <!--</div>-->
+        <!--<div class="process-step">-->
+        <!--<button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu2"><i class="fa fa-crop fa-3x"></i></button>-->
+        <!--<p><small>Arredamento</small></p>-->
+        <!--</div>-->
+        <!--<div class="process-step">-->
+        <!--<button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu3"><i class="fa fa-pagelines  fa-3x"></i></button>-->
+        <!--<p><small>Giardini</small></p>-->
+        <!--</div>-->
+    </div>
+</div>
+<div class="tab-content">
+    <div ng-repeat="type in resultWorksType track by $index" id="menu{{$index}}" class="tab-pane fade "
+         ng-class="{'active in':!$index}">
+        <h3>Menu {{$index}}</h3>
+        <div class="col-lg-12">
+            <div id="carousel-example-generic{{$index}}" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li ng-repeat="service in resultWorks track by $index"
+                        data-target="#carousel-example-generic" data-slide-to="$index"
+                        ng-class="{active:!$index}"></li>
+                </ol>
+
+
+                <!-- Wrapper for slides -->
+
+                <div class="carousel-inner">
+
+                    <div ng-repeat="service in resultWorks track by $index" class="item"
+                         ng-class="{active:!$index}">
+                        <img ng-src="{{service.image}}" alt="...">
+                        <div class="carousel-caption">
+                            <h2 class="title-carousel">{{service.title}}</h2>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic{{$index}}" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic{{$index}}" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+<div class="process-step">
+    <button type="button" class="btn btn-my btn-circle" data-toggle="tab" href="#menu0"><i class="fa fa-cubes fa-3x"></i></button>
+    <p><small>Progetti</small></p>
+</div>
+<div class="process-step">
+    <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu1"><i class="fa fa-crop fa-3x"></i></button>
+    <p><small>Arredamento</small></p>
+</div>
+<div class="process-step">
+    <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu2"><i class="fa fa-pagelines  fa-3x"></i></button>
+    <p><small>Giardini</small></p>
+</div>
