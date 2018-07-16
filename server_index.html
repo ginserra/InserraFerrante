@@ -1,0 +1,55 @@
+<html>
+<head>
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+    <link href="pagesServer/css/home.css" rel="stylesheet" media="screen">
+    <link href="pagesServer/css/about.css" rel="stylesheet" media="screen">
+    <link href="css/mdb.min.css" rel="stylesheet">
+
+
+</head>
+<body ng-app="appServer" ng-controller="serverController">
+
+<!-- HEADER AND NAVBAR -->
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Gestione Sito</a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#!/about"><i class="fa fa-user"></i> Chi Siamo</a></li>
+                <li><a href="#!/servizi"><i class="fa fa-cogs"></i> Servizi</a></li>
+                <li><a href="#!/contact"><i class="fa fa-comments"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- MAIN CONTENT AND INJECTED VIEWS -->
+<div id="main">
+
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+
+    <div ng-view></div>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.js"></script>
+<script src="js/jquery.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<script src="pagesServer/controllers/serverController.js"></script>
+<script src="pagesServer/controllers/homeController.js"></script>
+<script src="pagesServer/controllers/aboutController.js"></script>
+<script src="pagesServer/controllers/servicesController.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,28 @@
+
+    <a  data-largesrc={{work.image_main}} data-title={{work.title}}
+        data-description="{{work.description}}">
+        <img ng-src={{work.image_detail}} alt="" ng-click="select(work)" />
+    </a>
+
+    <div class="og-expander" ng-show=" work.visibility " style ="transition: height 350ms ease;
+    height: 500px;"  >
+
+        <div class="og-expander-inner">
+            <span class="og-close" ng-click="close(work)"></span>
+            <div class="og-fullimg">
+                <div class="og-loading" style="display: none;">
+
+                </div>
+                <img src="img/works/6.jpg" style="display: inline;">
+            </div>
+            <div class="og-details">
+                <h4>{{work.title}}</h4>
+                <p>Id elit saepe pro. In atomorum coTe elit essent mea, vim ne atqui legimus invenire, ad dolor vitae sea.</p>
+                <a href="#" class="btn btn-theme">External link</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
