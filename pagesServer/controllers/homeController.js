@@ -39,8 +39,6 @@ angular.module('appServer').controller('homeController',['$scope','$http','homeS
 
         });
 
-
-
     }
 
     function getDescriptions() {

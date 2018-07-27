@@ -54,7 +54,7 @@
 
 
                     <label for="selectType" style="margin-top: 10px">Tipo</label>
-                    <select id="selectType" class="form-control" ng-model="typeSelected[$index]">
+                    <select id="selectType" class="form-control" ng-model="typeSelected[$index]" >
                         <option ng-repeat="type in resultWorksType"  value="{{type.id}}">
                             {{type.type}}
                         </option>
@@ -73,7 +73,7 @@
                         <input type="text" class="form-control" id="inputTitle" placeholder="Titolo" ng-model="title" ng-value="work.title"  >
                     </div>
 
-                    <button type="button" class="btn btn-primary btn-lg " style="margin-top: 20px" ng-click="updateService(service.id,imageSrc[$index],title,content,$index)">Modifica</button>
+                    <button type="button" class="btn btn-primary btn-lg " style="margin-top: 20px" ng-click="updateWork(work.id,imageSrc[$index],typeSelected[$index],title,$index)">Modifica</button>
                     <button type="button" class="btn btn-danger btn-lg " style="margin-top: 20px" ng-click="removeService(service.id)">Rimuovi</button>
                 </div>
 

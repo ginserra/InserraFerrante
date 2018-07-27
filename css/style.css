@@ -338,12 +338,22 @@ About
 #about .about-img {
   height: 350px;
   overflow: hidden;
+    width: 500px;
 }
 
 #about .about-img img {
   margin-left: -15px;
   max-width: 100%;
 }
+
+/*.image_about{*/
+    /*display: block;*/
+    /*max-width:300px;*/
+    /*max-height:250px;*/
+    /*width: auto;*/
+    /*height: auto;*/
+
+/*}*/
 
 @media (max-width: 768px) {
   #about .about-img {
