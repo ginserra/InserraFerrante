@@ -708,6 +708,14 @@ Works
 	box-shadow: inset 10px 2px 31px 92px rgba(0,0,0,0.2);
 }
 
+.image16_9{
+	display: block;
+	max-width:800px;
+	max-height:500px;
+	width: auto;
+	height: auto;
+}
+
 
 
 

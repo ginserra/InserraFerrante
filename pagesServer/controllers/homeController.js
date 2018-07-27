@@ -1,4 +1,4 @@
-angular.module('appServer').controller('homeController', function($scope,$http) {
+angular.module('appServer').controller('homeController',['$scope','$http','homeServices', function($scope,$http,homeServices) {
 
     $scope.resultDescriptions=[];
     getDescriptions();
@@ -33,50 +33,39 @@ angular.module('appServer').controller('homeController', function($scope,$http) 
             subdescription:subdescription
         };
 
-        $http.post('http://localhost/server1/php_server/updateDescription.php', payload, {
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            }
-        }).then(function(data, status, headers, config) {
-            //success
-            console.log("OKKKK-->",data);
+        homeServices.updateDescription(payload).then(function (myReponseData) {
             getDescriptions();
-        }, function(data, status, headers, config) {
-            //an error occurred
-            console.log("ERROR");
+
+
         });
+
 
 
     }
 
-
-
     function getDescriptions() {
+        homeServices.getDescriptions().then(function(myReponseData){
+            // var data = myReponseData.data;
 
-        $http.get('http://localhost/server1/php_server/getDescriptions.php')
-            .then(function(response) {
-                console.log(response.data);
-                var result = response.data;
-                resultDescriptions = result;
-                for(var i =0;i<result.length;i++){
-                    var row = result[i];
-                    if(row.type == 1){
-                        $scope.desc1 = row.description;
-                        $scope.minidesc1=row.subdescription;
-                    }
-                    if(row.type == 2){
-                        $scope.desc2 = row.description;
-                        $scope.minidesc2=row.subdescription;
-                    }
-                    if(row.type == 3){
-                        $scope.desc3 = row.description;
-                        $scope.minidesc3=row.subdescription;
-                    }
+            var result = myReponseData.data;
+            resultDescriptions = result;
+            for(var i =0;i<result.length;i++){
+                var row = result[i];
+                if(row.type == 1){
+                    $scope.desc1 = row.description;
+                    $scope.minidesc1=row.subdescription;
                 }
+                if(row.type == 2){
+                    $scope.desc2 = row.description;
+                    $scope.minidesc2=row.subdescription;
+                }
+                if(row.type == 3){
+                    $scope.desc3 = row.description;
+                    $scope.minidesc3=row.subdescription;
+                }
+            }
 
-
-            });
-
+        });
     }
 
     function getCount(foldername)
@@ -85,4 +74,4 @@ angular.module('appServer').controller('homeController', function($scope,$http) 
     }
 
 
-});
+}]);

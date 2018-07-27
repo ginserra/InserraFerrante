@@ -4,7 +4,6 @@ angular.module("app").controller("mainController", ['$scope','$http','$interval'
     function ($scope,$http,$interval,$timeout) {
 
 
-        // $scope.resultDescriptions=[];
         getDescriptionsHome();
         getDescriptionAbout();
         getProfiles();
@@ -12,91 +11,12 @@ angular.module("app").controller("mainController", ['$scope','$http','$interval'
         getServices();
         getWorks();
         getWorksType();
-        // $scope.services=[
-        //     {
-        //         id: 1,
-        //         image: "img/screenshots/1.png",
-        //         title:"Website Design",
-        //         content:"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-        //         "tempor incididunt ut labore et dolore magna."
-        //     },
-        //     {
-        //         id: 2,
-        //         image: "img/screenshots/2.png",
-        //         title:"Brand Identity",
-        //         content:"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-        //         "tempor incididunt ut labore et dolore magna."
-        //     },
-        //     {
-        //         id: 3,
-        //         image: "img/screenshots/3.png",
-        //         title:"Web & Mobile Apps",
-        //         content:"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n" +
-        //         "tempor incididunt ut labore et dolore magna."
-        //     }
-        //
-        //     ];
-
-
-
-
-        $scope.portofolio_visible = [{
-            id_work: 1,
-            image_main: "img/works/1.jpg",
-            title: "TITLE1",
-            description: "Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut",
-            image_detail: "img/works/thumbs/1.jpg",
-            visibility :false,
-            style :""
-
-        }, {
-            id_work: 2,
-            image_main: "img/works/2.jpg",
-            title: "TITLE2",
-            description: "Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut",
-            image_detail: "img/works/thumbs/2.jpg",
-            visibility:false,
-            style :""
-        },
-            {
-                id_work: 3,
-                image_main: "img/works/3.jpg",
-                title: "TITLE3",
-                description: "Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut",
-                image_detail: "img/works/thumbs/3.jpg",
-                visibility :false,
-                style :""
-            },
-            {
-                id_work: 4,
-                image_main: "img/works/4.jpg",
-                title: "TITLE4",
-                description: "Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut",
-                image_detail: "img/works/thumbs/4.jpg",
-                visibility :false,
-                style :""
-            },
-            {
-                id_work: 5,
-                image_main: "img/works/5.jpg",
-                title: "TITLE5",
-                description: "Duo te dico volutpat, unum elit oblique per id. Ne duo mollis sapientem intellegebat. Per at augue vidisse percipit, pri vocibus assueverit interesset ut",
-                image_detail: "img/works/thumbs/5.jpg",
-                visibility: false,
-                style :""
-            }
-
-
-        ];
-        $scope.test = function () {
-            console.log("ciaooooo");
-        }
 
 
 //------------------------------HOME---------------------------------
 
         function getDescriptionsHome(){
-            $http.get('http://localhost/server1/php_server/getDescriptions.php')
+            $http.get('http://localhost/server1/php_server/home/getDescriptions.php')
                 .then(function(response) {
                     //console.log(response.data);
                     var result = response.data;

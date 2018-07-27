@@ -1,4 +1,7 @@
-var serverApp = angular.module('appServer', ['ngRoute']);
+var serverApp = angular.module('appServer', ['ngRoute','ngMaterial']);
+
+serverApp.constant("addressServer","http://localhost/server1/php_server/");
+
 
 serverApp.config(function($routeProvider) {
     $routeProvider

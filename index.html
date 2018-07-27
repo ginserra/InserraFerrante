@@ -234,11 +234,11 @@
 
                                 <div class="carousel-inner">
 
-                                    <div ng-repeat="service in resultWorks track by $index" class="item"
+                                    <div ng-repeat="work in resultWorks track by $index" class="item"
                                          ng-class="{active:!$index}">
-                                        <img ng-src="{{service.image}}" alt="...">
+                                        <img ng-src="{{work.image}}" alt="..." class="image16_9">
                                         <div class="carousel-caption">
-                                            <h2 class="title-carousel">{{service.title}}</h2>
+                                            <h2 class="title-carousel">{{work.title}}</h2>
                                         </div>
                                     </div>
 
