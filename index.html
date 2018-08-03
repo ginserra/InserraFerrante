@@ -2,23 +2,18 @@
 <html>
 
 <head>
-    <title>Alstar - Bootstrap one page parallax template</title>
+    <title>FerranteInserra</title>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- css -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,700,800" rel="stylesheet"
           media="screen">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/style.css" rel="stylesheet" media="screen">
     <link href="color/default.css" rel="stylesheet" media="screen">
 
-    <!-- =======================================================
-      Theme Name: Alstar
-      Theme URL: https://bootstrapmade.com/alstar-free-parallax-bootstrap-template/
-      Author: BootstrapMade.com
-      Author URL: https://bootstrapmade.com
-    ======================================================= -->
 </head>
 
 <body ng-app="app" ng-controller="mainController">
@@ -43,9 +38,7 @@
                 <li class="current"><a href="#intro">Home</a></li>
                 <li><a href="#about">Chi siamo</a></li>
                 <li><a href="#services">Servizi</a></li>
-                <li><a href="#portfolio1">Works1</a></li>
-                <li><a href="#portfolio">Works</a></li>
-                <li><a href="#team">Team</a></li>
+                <li><a href="#portfolio1">Works</a></li>
                 <li><a href="#contact">Contatti</a></li>
             </ul>
         </div>
@@ -182,7 +175,7 @@
                 <div class="section-heading">
                     <h2>WORKS</h2>
                     <div class="heading-line"></div>
-                    <p>We’ve been building unique digital products, platforms, and experiences for the past 6 years.</p>
+                    <p>{{workDescription}}</p>
                 </div>
             </div>
         </div>
@@ -194,71 +187,38 @@
 
 
                         <div class="process-step" ng-repeat="type in resultWorksType ">
-                            <button id="button_{{$index}}" type="button" class="btn  btn-circle" data-toggle="tab" ng-class="selected == $index ? '{{classSelected}}':'classNoSelected'" ng-click="clickButtonWork($index)"
-                                    href="#menu{{$index}}"><i class="fa {{type.icon}} fa-3x"></i></button>
+                            <button id="button_{{type.id}}" type="button" class="btn  btn-circle" data-toggle="tab"
+                                    ng-class="selected == type.id ? '{{classSelected}}':'classNoSelected'"
+                                    ng-click="clickButtonWork($index,type.id)"
+                                    href="#menu{{type.id}}"><i class="fa {{type.icon}} fa-3x"></i></button>
                             <p>
                                 <small>{{type.type}}</small>
                             </p>
                         </div>
 
-                        <!--<div class="process-step">-->
-                            <!--<button type="button" class="btn btn-my btn-circle" data-toggle="tab" href="#menu0"><i class="fa fa-cubes fa-3x"></i></button>-->
-                            <!--<p><small>Progetti</small></p>-->
-                        <!--</div>-->
-                        <!--<div class="process-step">-->
-                            <!--<button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu1"><i class="fa fa-crop fa-3x"></i></button>-->
-                            <!--<p><small>Arredamento</small></p>-->
-                        <!--</div>-->
-                        <!--<div class="process-step">-->
-                            <!--<button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu2"><i class="fa fa-pagelines  fa-3x"></i></button>-->
-                            <!--<p><small>Giardini</small></p>-->
-                        <!--</div>-->
 
                     </div>
                 </div>
                 <div class="tab-content">
-                    <div ng-repeat="type in resultWorksType track by $index" id="menu{{$index}}" class="tab-pane fade "
+                    <div ng-repeat="type in resultWorksType" id="menu{{type.id}}" class="tab-pane fade "
                          ng-class="{'active in':!$index}">
-                        <h3>Menu {{$index}}</h3>
-                        <div class="col-lg-12">
-                            <div id="carousel-example-generic{{$index}}" class="carousel slide" data-ride="carousel">
-                                <!-- Indicators -->
-                                <ol class="carousel-indicators">
-                                    <li ng-repeat="service in resultWorks track by $index"
-                                        data-target="#carousel-example-generic" data-slide-to="$index"
-                                        ng-class="{active:!$index}"></li>
-                                </ol>
+                        <h3>Menu {{type.id}}</h3>
 
-
-                                <!-- Wrapper for slides -->
-
-                                <div class="carousel-inner">
-
-                                    <div ng-repeat="work in resultWorks track by $index" class="item"
-                                         ng-class="{active:!$index}">
-                                        <img ng-src="{{work.image}}" alt="..." class="image16_9">
-                                        <div class="carousel-caption">
-                                            <h2 class="title-carousel">{{work.title}}</h2>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <!-- Controls -->
-                                <a class="left carousel-control" href="#carousel-example-generic{{$index}}" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>
-                                </a>
-                                <a class="right carousel-control" href="#carousel-example-generic{{$index}}" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                </a>
+                        <div  class="row_gallery">
+                        <div ng-repeat="work in filters" class="column_gallery">
+                            <div class="content">
+                                <img ng-src="{{work.image}}" alt=".." style="width:200px;height: 140px" ng-click="openDialog($event,filters,type.type,work.id)">
+                                <p>{{work.title}}</p>
                             </div>
                         </div>
 
 
                     </div>
-
-
                 </div>
+                </div>
+
+                <!--chiudo tabcontent-->
+
 
             </div> <!-- chiudol col-12 -->
         </div>
@@ -286,51 +246,51 @@
     </div>
 </section>
 
-<!-- Team -->
-<section id="team" class="home-section bg-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-                <div class="section-heading">
-                    <h2>Our Team</h2>
-                    <div class="heading-line"></div>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                        est laborum</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <div class="box-team wow bounceInUp" data-wow-delay="0.1s">
-                    <img src="img/team/1.jpg" alt="" class="img-circle img-responsive"/>
-                    <h4>Dominique Vroslav</h4>
-                    <p>Art Director</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.3s">
-                <div class="box-team wow bounceInUp">
-                    <img src="img/team/2.jpg" alt="" class="img-circle img-responsive"/>
-                    <h4>Thomas Jeffersonn</h4>
-                    <p>Web Designer</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.5s">
-                <div class="box-team wow bounceInUp">
-                    <img src="img/team/3.jpg" alt="" class="img-circle img-responsive"/>
-                    <h4>Nola Maurin</h4>
-                    <p>Illustrator</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">
-                <div class="box-team wow bounceInUp">
-                    <img src="img/team/4.jpg" alt="" class="img-circle img-responsive"/>
-                    <h4>Mira Ladovic</h4>
-                    <p>Typographer</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!--&lt;!&ndash; Team &ndash;&gt;-->
+<!--<section id="team" class="home-section bg-white">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-offset-2 col-md-8">-->
+                <!--<div class="section-heading">-->
+                    <!--<h2>Our Team</h2>-->
+                    <!--<div class="heading-line"></div>-->
+                    <!--<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id-->
+                        <!--est laborum</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+            <!--<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">-->
+                <!--<div class="box-team wow bounceInUp" data-wow-delay="0.1s">-->
+                    <!--<img src="img/team/1.jpg" alt="" class="img-circle img-responsive"/>-->
+                    <!--<h4>Dominique Vroslav</h4>-->
+                    <!--<p>Art Director</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.3s">-->
+                <!--<div class="box-team wow bounceInUp">-->
+                    <!--<img src="img/team/2.jpg" alt="" class="img-circle img-responsive"/>-->
+                    <!--<h4>Thomas Jeffersonn</h4>-->
+                    <!--<p>Web Designer</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.5s">-->
+                <!--<div class="box-team wow bounceInUp">-->
+                    <!--<img src="img/team/3.jpg" alt="" class="img-circle img-responsive"/>-->
+                    <!--<h4>Nola Maurin</h4>-->
+                    <!--<p>Illustrator</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" data-wow-delay="0.7s">-->
+                <!--<div class="box-team wow bounceInUp">-->
+                    <!--<img src="img/team/4.jpg" alt="" class="img-circle img-responsive"/>-->
+                    <!--<h4>Mira Ladovic</h4>-->
+                    <!--<p>Typographer</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
 
 <!-- Contact -->
 <section id="contact" class="home-section bg-gray">
@@ -338,10 +298,9 @@
         <div class="row">
             <div class="col-md-offset-2 col-md-8">
                 <div class="section-heading">
-                    <h2>Contact us</h2>
+                    <h2>Contatti</h2>
                     <div class="heading-line"></div>
-                    <p>If you have any question or just want to say 'hello' to Alstar web studio please fill out form
-                        below and we will be get in touch with you within 24 hours. </p>
+                    <p>Per qualsiasi domanda, comunicazione, inviateci una mail. Saremo lieti di rispondervi quanto prima possibile </p>
                 </div>
             </div>
         </div>
@@ -354,24 +313,24 @@
                 <form action="" method="post" class="form-horizontal contactForm" role="form">
                     <div class="col-md-offset-2 col-md-8">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
-                                   data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Nome"
+                                   data-rule="minlen:4" data-msg="Inserisci almeno 4 caratteri"/>
                             <div class="validation"></div>
                         </div>
                     </div>
 
                     <div class="col-md-offset-2 col-md-8">
                         <div class="form-group">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
-                                   data-rule="email" data-msg="Please enter a valid email"/>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email"
+                                   data-rule="email" data-msg="Scrivi una email valida"/>
                             <div class="validation"></div>
                         </div>
                     </div>
 
                     <div class="col-md-offset-2 col-md-8">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
-                                   data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject"/>
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Soggetto"
+                                   data-rule="minlen:4" data-msg="Inserisci almeno 8 caratteri"/>
                             <div class="validation"></div>
                         </div>
                     </div>
@@ -379,13 +338,13 @@
                     <div class="col-md-offset-2 col-md-8">
                         <div class="form-group">
                             <textarea class="form-control" name="message" rows="5" data-rule="required"
-                                      data-msg="Please write something for us" placeholder="Message"></textarea>
+                                      data-msg="Scrivici..." placeholder="Messaggio"></textarea>
                             <div class="validation"></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
-                            <button type="submit" class="btn btn-theme btn-lg btn-block">Send message</button>
+                            <button type="submit" class="btn btn-theme btn-lg btn-block">Invia</button>
                         </div>
                     </div>
                 </form>
@@ -465,22 +424,22 @@
 
 <!-- Footer -->
 <footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <p>Copyright &copy; Alstar. All rights reserved.</p>
-                <div class="credits">
-                    <!--
-                      All the links in the footer should remain intact.
-                      You can delete the links only if you purchased the pro version.
-                      Licensing information: https://bootstrapmade.com/license/
-                      Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Alstar
-                    -->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-12">-->
+                <!--<p>Copyright &copy; Alstar. All rights reserved.</p>-->
+                <!--<div class="credits">-->
+                    <!--&lt;!&ndash;-->
+                      <!--All the links in the footer should remain intact.-->
+                      <!--You can delete the links only if you purchased the pro version.-->
+                      <!--Licensing information: https://bootstrapmade.com/license/-->
+                      <!--Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Alstar-->
+                    <!--&ndash;&gt;-->
+                    <!--Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </footer>
 
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
@@ -508,11 +467,12 @@
 <!-- ANGULAR -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.min.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-aria.min.js"></script>-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-messages.min.js"></script>-->
-<!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.css">-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-touch.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
 <script src="myApp.js"></script>
 
 

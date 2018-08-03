@@ -1,0 +1,53 @@
+<md-dialog class="dialog-carousel" style="position:fixed;" aria-label="Scegli l'icona">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Galleria <b>{{type}}</b></h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon class="fa fa-close" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div text-align="center">
+            <div id="carousel-work" class="carousel slide" data-ride="carousel" style="margin: 20px">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li ng-repeat="work in filters track by $index"
+                        data-target="#carousel-work" data-slide-to="$index"
+                        ng-class="{active:!$index}"></li>
+                </ol>
+
+
+                <!-- Wrapper for slides -->
+
+                <div class="carousel-inner">
+
+                    <div ng-repeat="work in filters track by $index" class="item"
+                         ng-class="{active:work.id==id_work}">
+                        <img ng-src="{{work.image}}" alt="..." style="width:800px;height:500px">
+                        <div class="carousel-caption">
+                            <p class="title-carousel">{{work.title}}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-work" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-work" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+
+
+        </div>
+
+    </md-dialog-content>
+
+</md-dialog>
