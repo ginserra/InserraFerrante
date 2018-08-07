@@ -1,4 +1,4 @@
-var module = angular.module("app", ['ngAnimate','ngMaterial']);
+var module = angular.module("app", ['ngAnimate','ngMaterial','ui.bootstrap']);
 //
 angular.module("app").controller("mainController", ['$scope','$http','$interval','$timeout','$mdDialog',
     function ($scope,$http,$interval,$timeout,$mdDialog) {
@@ -75,7 +75,12 @@ angular.module("app").controller("mainController", ['$scope','$http','$interval'
                 .then(function(response) {
                     // console.log(response.data);
                     $scope.resultServices= response.data;
-
+                    $scope.currentPage=1;
+        			$scope.itemsPerPage=4;
+                    $scope.totalItems = $scope.resultServices.length;
+                    console.log("ITEMS TOTALI-->"+$scope.totalItems);
+                    $scope.maxSize = 5; //Number of pager buttons to show
+                      
 
                 });
 
@@ -222,6 +227,14 @@ angular.module("app").controller("mainController", ['$scope','$http','$interval'
 
 
         }
+        
+        //BLOG
+        
+        
+        
+        $scope.pageChanged = function() {
+    		console.log('Page changed to: ' + $scope.currentPage);
+  		};
 
     }
 ])//chiudo il controller
