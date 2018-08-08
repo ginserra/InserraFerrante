@@ -796,6 +796,16 @@ Blog
 	color: #00c1c1;
 }
 
+.visible {
+	visibility: visible;
+}
+.invisible {
+	visibility: hidden;
+}
+.hidden {
+	display: none !important;
+	visibility: hidden !important;
+}
 	
 
 

@@ -12,6 +12,7 @@ angular.module("app").controller("mainController", ['$scope','$http','$interval'
         getDescriptionWork();
         getWorks();
         getWorksType();
+        getDescriptionBlog();
 
 
 //------------------------------HOME---------------------------------
@@ -235,6 +236,23 @@ angular.module("app").controller("mainController", ['$scope','$http','$interval'
         $scope.pageChanged = function() {
     		console.log('Page changed to: ' + $scope.currentPage);
   		};
+
+
+
+        //------------------------------BLOG---------------------------------
+
+        function getDescriptionBlog(){
+            $http.get('http://localhost/server1/php_server/blog/getDescription.php')
+                .then(function(response) {
+                     console.log("----BLOG----");
+                    console.log(response.data[0]);
+                    $scope.blogDescription= response.data[0].description;
+                    $scope.blogVisibility= response.data[0].visibility;
+
+
+                });
+
+        }
 
     }
 ])//chiudo il controller
